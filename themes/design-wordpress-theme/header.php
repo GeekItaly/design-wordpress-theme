@@ -1,34 +1,22 @@
 <!DOCTYPE html>
-<html <?php language_attributes(); ?> class="">
-	<head>
-		<meta charset="<?php bloginfo( 'charset' ); ?>">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="profile" href="http://gmpg.org/xfn/11">
-		
-		<?php wp_head(); ?>
-	</head>
+<!--[if IE 8]><html class="no-js ie89 ie8" <?php language_attributes(); ?>><![endif]-->
+<!--[if IE 9]><html class="no-js ie89 ie9" <?php language_attributes(); ?>><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="no-js" <?php language_attributes(); ?>>
+<!--<![endif]-->
+
+<head>
+  <meta charset="<?php bloginfo( 'charset' ); ?>">
+  <title>Preview Layout</title>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="profile" href="http://gmpg.org/xfn/11">
+
+  <!-- <link rel="preload" href="/wp-content/themes/design-wordpress-theme/build/IWT.min.js" as="script"> -->
+
+  
+  <?php wp_head(); ?>
+</head>
+
+<body <?php body_class('t-Pac'); ?>>
 	
-	<body <?php body_class(); ?>>
-			
-		<header>
-			
-			<div>		
-				<div class="logo"><?php the_custom_logo(); ?></div>
-				
-				<?php $description = get_bloginfo( 'description', 'display' ); if($description): ?>
-					<p class="description"><?php echo $description; ?></p>
-				<?php endif; ?>
-			</div>
-			
-			<?php if(has_nav_menu('menu-left')): ?>
-				<?php get_template_part('template-parts/navigation/navigation', 'menu-left'); ?>
-			<?php endif; ?>
-			
-			<?php if(has_nav_menu('menu-left-social')): ?>
-				<?php get_template_part('template-parts/navigation/navigation', 'menu-left-social'); ?>
-			<?php endif; ?>
-			
-		</header>
-		
-		
-		<main>

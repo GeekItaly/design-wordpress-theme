@@ -12,9 +12,8 @@ get_header();
 		if( is_front_page() ){
 			get_template_part( 'template-parts/home/home-stuff' );
 		}else{
-			if( $post->post_name === 'pagina1' ){
-				//echo('pagina1...');
-				//get_template_part( 'pagina1' );
+			if( $post->post_name === 'page-default' ){
+				get_template_part( 'Componenti/Page/Default' );
 			}
 			else if( $post->post_name === 'pagina2' ){
 				//echo('pagina2...');

@@ -1,0 +1,1 @@
+__PUBLIC_PATH__ = '/wp-content/themes/design-wordpress-theme/build/'
