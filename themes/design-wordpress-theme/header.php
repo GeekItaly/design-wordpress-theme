@@ -1,3 +1,9 @@
+<?php
+
+echo '<pre>', print_r( get_post_meta( $post->ID ) ), '</pre>';
+
+?>
+
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js ie89 ie8" <?php language_attributes(); ?>><![endif]-->
 <!--[if IE 9]><html class="no-js ie89 ie9" <?php language_attributes(); ?>><![endif]-->
@@ -20,3 +26,4 @@
 
 <body <?php body_class('t-Pac'); ?>>
 	
+	<?php get_template_part('template-parts/header/header', 'banner'); ?>

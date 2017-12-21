@@ -70,3 +70,72 @@ function limit_chars_entire_words($string, $limit){
 
 
 
+
+
+
+
+
+
+abstract class WPOrg_Meta_Box
+{
+    public static function add()
+    {
+        $screens = ['post', 'page'];
+        foreach ($screens as $screen) {
+            add_meta_box(
+                'wporg_box_id',          // Unique ID
+                'Custom Meta Box Title', // Box title
+                [self::class, 'html'],   // Content callback, must be of type callable
+                $screen,                  // Post type
+                'advanced'
+            );
+        }
+    }
+    
+    public static function remove_meta_box()
+    {
+        $screens = ['post', 'page'];
+        foreach ($screens as $screen) {
+            remove_meta_box('wporg_box_id', $screen, 'advanced'); 
+        }
+    }
+ 
+    public static function save($post_id)
+    {
+        if (array_key_exists('wporg_field', $_POST)) {
+            update_post_meta(
+                $post_id,
+                '_wporg_meta_key',
+                $_POST['wporg_field']
+            );
+        }
+    }
+ 
+    public static function html($post)
+    {
+        $value = get_post_meta($post->ID, '_wporg_meta_key', true);
+        
+        if($value === ''){
+	        delete_post_meta($post->ID, '_wporg_meta_key');
+        }
+        
+        ?>
+        <label for="wporg_field">Description for this field</label>
+        <select name="wporg_field" id="wporg_field" class="postbox">
+            <option value="">-</option>
+            <option value="something" <?php selected($value, 'something'); ?>>Something</option>
+            <option value="else" <?php selected($value, 'else'); ?>>Else</option>
+        </select>
+        <?php
+	    get_template_part('_sortable');
+    }
+}
+ 
+add_action('add_meta_boxes', ['WPOrg_Meta_Box', 'add']);
+//add_action('do_meta_boxes', ['WPOrg_Meta_Box', 'remove_meta_box']);
+add_action('save_post', ['WPOrg_Meta_Box', 'save']);
+
+
+
+
+
